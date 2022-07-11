@@ -9,10 +9,19 @@ import ProductHot from "../components/ProductHot";
 import ProductReviews from "../components/ProductReviews";
 import Subscribe from "../components/Subscribe";
 import Marquee from "react-fast-marquee";
-
+import Navbar from "../components/Navbar";
 export default function Home() {
+  const [cartFromStorage, setCarFromStorage] = useState();
+  useEffect(() => {
+    const cartToStorage = JSON.parse(
+      window.localStorage.getItem("my-cart") || "[]"
+    );
+    setCarFromStorage(cartToStorage);
+  }, [cartFromStorage]);
+
   return (
-    <div style={{ fontFamily: "Helvetica" }}>
+    <div className="" style={{ fontFamily: "Helvetica" }}>
+      <Navbar cartCount={cartFromStorage} />
       <Hero />
       <Marquee
         speed={60}
